@@ -18,7 +18,7 @@ ffmpeg libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libpostpro
 git clone https://github.com/freeswitch/sofia-sip.git
 cd sofia-sip
 ./bootstrap.sh
-./configure prefix=/home/work/fs-deps/sofia-sip
+./configure --prefix=/home/work/fs-deps/sofia-sip
 make
 make install
 ```
@@ -29,7 +29,7 @@ make install
 git clone https://github.com/freeswitch/spandsp.git
 cd spandsp
 ./bootstrap.sh
-./configure prefix=/home/work/fs-deps/spandsp
+./configure --prefix=/home/work/fs-deps/spandsp
 make
 make install
 ```
