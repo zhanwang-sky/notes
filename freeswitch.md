@@ -59,6 +59,8 @@ mod_av
 mod_spandsp
 ```
 
+## post-install
+
 **systemd**
 
 编辑`freeswitch-systemd.freeswitch.service`示例文件，修改如下地方：
@@ -94,3 +96,9 @@ cp -a debian/freeswitch-systemd.freeswitch.service /etc/systemd/system/freeswitc
 ```
 sudo systemctl daemon-reload
 ```
+
+**修改配置**
+
+修改`autoload_configs/modules.conf.xml`，调整需要启用的模块
+
+修改`autoload_configs/logfile.conf.xml`，调整日志大小
