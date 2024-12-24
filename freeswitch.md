@@ -36,7 +36,7 @@ make install
 
 **编译`FreeSWITCH`**
 
-*由于`sofia-sip`和`spandsp`安装到了自定义目录，故需修改`PKG_CONFIG_PATH`环境变量，使`pkg-config`能找到*
+*由于`sofia-sip`和`spandsp`安装到了自定义目录，故需修改`PKG_CONFIG_PATH`环境变量，使`pkgconfig`能找到*
 ```
 export PKG_CONFIG_PATH=/home/work/.local/lib/pkgconfig
 ```
@@ -57,4 +57,40 @@ mod_verto
 mod_signalwire
 mod_av
 mod_spandsp
+```
+
+**systemd**
+
+编辑`freeswitch-systemd.freeswitch.service`示例文件，修改如下地方：
+```
+12c12
+< PIDFile=/run/freeswitch/freeswitch.pid
+---
+> PIDFile=/home/work/freeswitch/var/run/freeswitch/freeswitch.pid
+14,19c14,17
+< Environment="USER=freeswitch"
+< Environment="GROUP=freeswitch"
+< EnvironmentFile=-/etc/default/freeswitch
+< ExecStartPre=/bin/chown -R ${USER}:${GROUP} /var/lib/freeswitch /var/log/freeswitch /etc/freeswitch /usr/share/freeswitch /var/run/freeswitch
+< ExecStart=/usr/bin/freeswitch -u ${USER} -g ${GROUP} -ncwait ${DAEMON_OPTS}
+< TimeoutSec=45s
+---
+> Environment="USER=work"
+> Environment="GROUP=work"
+> ExecStart=/home/work/freeswitch/bin/freeswitch -u ${USER} -g ${GROUP} -ncwait ${DAEMON_OPTS}
+> TimeoutSec=15s
+34c32
+< UMask=0007
+---
+> UMask=0002
+```
+
+拷贝到system目录
+```
+cp -a debian/freeswitch-systemd.freeswitch.service /etc/systemd/system/freeswitch.service
+```
+
+重新加载daemon文件
+```
+sudo systemctl daemon-reload
 ```
