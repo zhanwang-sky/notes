@@ -38,7 +38,7 @@ make install
 
 *由于`sofia-sip`和`spandsp`安装到了自定义目录，故需修改`PKG_CONFIG_PATH`环境变量，使`pkg-config`能找到*
 ```
-export PKG_CONFIG_PATH=/home/work/.local:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/home/work/.local/lib/pkgconfig
 ```
 
 ```
@@ -51,7 +51,7 @@ make install
 ```
 
 *下述模块可能编不过，如不需要可先注掉</br>
-（从`configure.ac`中删掉，从`build/modules.conf.in`中注掉）*
+（从`build/modules.conf.in`中注掉）*
 ```
 mod_verto
 mod_signalwire
