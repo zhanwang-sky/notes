@@ -18,7 +18,7 @@ ffmpeg libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libpostpro
 git clone https://github.com/freeswitch/sofia-sip.git
 cd sofia-sip
 ./bootstrap.sh
-./configure --prefix=/home/work/fs-deps/sofia-sip
+./configure --prefix=/home/work/.local
 make
 make install
 ```
@@ -29,7 +29,7 @@ make install
 git clone https://github.com/freeswitch/spandsp.git
 cd spandsp
 ./bootstrap.sh
-./configure --prefix=/home/work/fs-deps/spandsp
+./configure --prefix=/home/work/.local
 make
 make install
 ```
@@ -38,16 +38,7 @@ make install
 
 *由于`sofia-sip`和`spandsp`安装到了自定义目录，故需修改`PKG_CONFIG_PATH`环境变量，使`pkg-config`能找到*
 ```
-export PKG_CONFIG_PATH=/home/work/fs-deps/sofia-sip/lib/pkgconfig:/home/work/fs-deps/spandsp/lib/pkgconfig:$PKG_CONFIG_PATH
-```
-
-*下述模块可能编不过，如不需要可先注掉</br>
-（从`configure.ac`中删掉，从`build/modules.conf.in`中注掉）*
-```
-mod_verto
-mod_signalwire
-mod_av
-mod_spandsp
+export PKG_CONFIG_PATH=/home/work/.local:$PKG_CONFIG_PATH
 ```
 
 ```
@@ -57,4 +48,13 @@ cd freeswitch
 ./configure --prefix=/home/work/freeswitch
 make
 make install
+```
+
+*下述模块可能编不过，如不需要可先注掉</br>
+（从`configure.ac`中删掉，从`build/modules.conf.in`中注掉）*
+```
+mod_verto
+mod_signalwire
+mod_av
+mod_spandsp
 ```
