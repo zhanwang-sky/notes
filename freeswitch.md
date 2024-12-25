@@ -18,7 +18,7 @@ ffmpeg libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libpostpro
 git clone https://github.com/freeswitch/sofia-sip.git
 cd sofia-sip
 ./bootstrap.sh
-./configure --prefix=/home/work/.local
+./configure --prefix=/home/work/.local/sofia-sip
 make
 make install
 ```
@@ -29,7 +29,7 @@ make install
 git clone https://github.com/freeswitch/spandsp.git
 cd spandsp
 ./bootstrap.sh
-./configure --prefix=/home/work/.local
+./configure --prefix=/home/work/.local/spandsp
 make
 make install
 ```
@@ -38,7 +38,7 @@ make install
 
 *由于`sofia-sip`和`spandsp`安装到了自定义目录，故需修改`PKG_CONFIG_PATH`环境变量，使`pkgconfig`能找到*
 ```
-export PKG_CONFIG_PATH=/home/work/.local/lib/pkgconfig
+export PKG_CONFIG_PATH=/home/work/.local/sofia-sip/lib/pkgconfig:/home/work/.local/spandsp/lib/pkgconfig
 ```
 
 ```
@@ -80,7 +80,7 @@ mod_spandsp
 > Environment="USER=work"
 > Environment="GROUP=work"
 > ExecStart=/home/work/freeswitch/bin/freeswitch -u ${USER} -g ${GROUP} -ncwait ${DAEMON_OPTS}
-> TimeoutSec=15s
+> TimeoutSec=10s
 34c32
 < UMask=0007
 ---
@@ -89,7 +89,7 @@ mod_spandsp
 
 拷贝到system目录
 ```
-cp -a debian/freeswitch-systemd.freeswitch.service /etc/systemd/system/freeswitch.service
+sudo cp debian/freeswitch-systemd.freeswitch.service /etc/systemd/system/freeswitch.service
 ```
 
 重新加载daemon文件
