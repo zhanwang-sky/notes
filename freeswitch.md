@@ -50,7 +50,7 @@ make
 make install
 ```
 
-*下述模块可能编不过，如不需要可先注掉</br>
+*下列模块可能编不过，如不需要可先注掉</br>
 （从`build/modules.conf.in`中注掉）*
 ```
 mod_verto
@@ -63,7 +63,7 @@ mod_spandsp
 
 **systemd**
 
-编辑`freeswitch-systemd.freeswitch.service`示例文件，修改如下地方：
+编辑`debian/freeswitch-systemd.freeswitch.service`示例文件，修改如下地方：
 ```
 12c12
 < PIDFile=/run/freeswitch/freeswitch.pid
@@ -101,4 +101,4 @@ sudo systemctl daemon-reload
 
 修改`autoload_configs/modules.conf.xml`，调整需要启用的模块
 
-修改`autoload_configs/logfile.conf.xml`，调整日志大小
+修改`autoload_configs/logfile.conf.xml`，调整单个日志文件大小
