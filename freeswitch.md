@@ -132,9 +132,26 @@ make install
 **编译并安装`unimrcp`**
 
 ```
+git clone https://github.com/unispeech/unimrcp.git
 cd unimrcp
 ./bootstrap
 ./configure --prefix=/home/work/.local/unimrcp --with-apr=/home/work/.local/apr --with-apr-util=/home/work/.local/apr --with-sofia-sip=/home/work/.local/sofia-sip
+make
+make install
+```
+
+**编译并安装`mod_unimrcp`**
+
+*设置`PKG_CONFIG_PATH`环境变量*
+```
+export PKG_CONFIG_PATH=/home/work/freeswitch/lib/pkgconfig:/home/work/.local/unimrcp/lib/pkgconfig
+```
+
+```
+git clone https://github.com/freeswitch/mod_unimrcp.git
+cd mod_unimrcp
+./bootstrap.sh
+./configure
 make
 make install
 ```
