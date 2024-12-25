@@ -102,3 +102,5 @@ sudo systemctl daemon-reload
 修改`autoload_configs/modules.conf.xml`，调整需要启用的模块
 
 修改`autoload_configs/logfile.conf.xml`，调整单个日志文件大小
+
+修改`vars.xml`，调整公网SIP和RTP地址
