@@ -104,3 +104,37 @@ sudo systemctl daemon-reload
 修改`autoload_configs/logfile.conf.xml`，调整单个日志文件大小
 
 修改`vars.xml`，调整公网SIP和RTP地址
+
+## unimrcp
+
+**下载依赖库源码**
+
+从[unimrcp.org](http://www.unimrcp.org/downloads/dependencies)下载最新依赖库源码包。
+
+**编译并安装`apr`**
+
+```
+cd libs/apr
+./configure --prefix=/home/work/.local/apr
+make
+make install
+```
+
+**编译并安装`apr-util`**
+
+```
+cd libs/apr-util
+./configure --prefix=/home/work/.local/apr --with-apr=/home/work/.local/apr
+make
+make install
+```
+
+**编译并安装`unimrcp`**
+
+```
+cd unimrcp
+./bootstrap
+./configure --prefix=/home/work/.local/unimrcp --with-apr=/home/work/.local/apr --with-apr-util=/home/work/.local/apr --with-sofia-sip=/home/work/.local/sofia-sip
+make
+make install
+```
