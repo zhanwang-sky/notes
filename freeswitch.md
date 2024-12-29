@@ -155,3 +155,59 @@ cd mod_unimrcp
 make
 make install
 ```
+
+**配置**
+
+**`autoload_configs/unimrcp.conf.xml`**
+```xml
+<configuration name="unimrcp.conf" description="UniMRCP Client">
+  <settings>
+    <!-- UniMRCP profile to use for TTS -->
+    <param name="default-tts-profile" value="unimrcp-demo2"/>
+    <!-- UniMRCP profile to use for ASR -->
+    <param name="default-asr-profile" value="unimrcp-demo2"/>
+    <!-- UniMRCP logging level to appear in freeswitch.log.  Options are:
+         EMERGENCY|ALERT|CRITICAL|ERROR|WARNING|NOTICE|INFO|DEBUG -->
+    <param name="log-level" value="DEBUG"/>
+    <!-- Enable events for profile creation, open, and close -->
+    <param name="enable-profile-events" value="false"/>
+    <param name="max-connection-count" value="100"/>
+    <param name="offer-new-connection" value="true"/>
+    <param name="request-timeout" value="3000"/>
+  </settings>
+
+  <profiles>
+    <X-PRE-PROCESS cmd="include" data="../mrcp_profiles/*.xml"/>
+  </profiles>
+
+</configuration>
+```
+
+**`mrcp_profiles/unimrcp-demo2.xml`**
+```xml
+<include>
+  <profile name="unimrcp-demo2" version="2">
+    <param name="client-ip" value="$${local_ip_v4}"/>
+    <param name="client-port" value="5804"/>
+    <param name="server-ip" value="x.x.x.x"/>
+    <param name="server-port" value="8060"/>
+    <param name="sip-transport" value="udp"/>
+    <param name="sip-t1x64" value="3000"/>
+    <param name="rtp-ip" value="$${local_ip_v4}"/>
+    <param name="rtp-port-min" value="10000"/>
+    <param name="rtp-port-max" value="19998"/>
+    <param name="codecs" value="PCMU PCMA L16/96/8000 telephone-event/101/8000"/>
+
+    <recogparams>
+      <param name="start-input-timers" value="false"/>
+    </recogparams>
+  </profile>
+</include>
+```
+
+**`share/freeswitch/grammar/hello.gram`**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xml:lang="zh-CN" version="1.0" root="ROOT" xmlns="http://www.w3.org/2001/06/grammar">
+</grammar>
+```
