@@ -171,6 +171,7 @@ make install
     <param name="log-level" value="DEBUG"/>
     <!-- Enable events for profile creation, open, and close -->
     <param name="enable-profile-events" value="false"/>
+
     <param name="max-connection-count" value="100"/>
     <param name="offer-new-connection" value="true"/>
     <param name="request-timeout" value="3000"/>
@@ -189,13 +190,13 @@ make install
   <profile name="unimrcp-demo2" version="2">
     <param name="client-ip" value="$${local_ip_v4}"/>
     <param name="client-port" value="5804"/>
-    <param name="server-ip" value="x.x.x.x"/>
+    <param name="server-ip" value="$${local_ip_v4}"/>
     <param name="server-port" value="8060"/>
     <param name="sip-transport" value="udp"/>
     <param name="sip-t1x64" value="3000"/>
     <param name="rtp-ip" value="$${local_ip_v4}"/>
     <param name="rtp-port-min" value="10000"/>
-    <param name="rtp-port-max" value="19998"/>
+    <param name="rtp-port-max" value="14998"/>
     <param name="codecs" value="PCMU PCMA L16/96/8000 telephone-event/101/8000"/>
 
     <recogparams>
