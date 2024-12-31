@@ -211,3 +211,15 @@ make install
 <grammar xml:lang="zh-CN" version="1.0" root="ROOT" xmlns="http://www.w3.org/2001/06/grammar">
 </grammar>
 ```
+
+**ESL触发MRCP**
+
+`> telnet ::1 8021`
+```
+auth ClueCon
+
+sendmsg session-uuid
+call-command: execute
+execute-app-name: detect_speech
+execute-app-arg: unimrcp {CallId=123;CallMethod=inbound;SipFrom=456;SipTo=789;RtpSource=to}hello hello
+```
