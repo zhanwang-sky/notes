@@ -74,3 +74,43 @@ username=6000
 type=aor
 max_contacts=1
 ```
+
+**music on hold**
+
+ensure audio format:</br>
+`ffmpeg -i the_good_the_bad_and_the_ugly.mp3 -ar 8000 -ac 1 -acodec pcm_s16le the_good_the_bad_and_the_ugly.wav`
+
+`musiconhold.conf`
+```
+[got]
+mode=files
+directory=/path/to/got
+
+[tgtbtu]
+mode=files
+directory=/path/to/tgtbtu
+```
+
+`extension.conf`
+```
+[from-internal]
+exten = 1000,1,Answer()
+
+; will play default moh
+same = n,StartMusicOnHold()
+same = n,Wait(10)
+same = n,Playback(hello-world)
+
+; will play `Game of Thrones`
+same = n,StartMusicOnHold(got)
+same = n,Wait(10)
+same = n,Playback(hello-world)
+
+; will play `the Good the Bad and the Ugly`
+same = n,Set(CHANNEL(musicclass)=tgtbtu)
+same = n,StartMusicOnHold(got)
+same = n,Wait(10)
+same = n,Playback(hello-world)
+
+same = n,Hangup()
+```
