@@ -15,32 +15,32 @@ sudo make config
 sudo make install-logrotate
 ```
 
-**basic config**
+### basic config
 
-`asterisk.conf`
+**`asterisk.conf`**
 ```
 debug=1
 ```
 
-`cdr.conf`
+**`cdr.conf`**
 ```
 [radius]
 radiuscfg => /etc/radcli/radiusclient.conf
 ```
 
-`cel.conf`
+**`cel.conf`**
 ```
 radiuscfg => /etc/radcli/radiusclient.conf
 ```
 
-`logger.conf`
+**`logger.conf`**
 ```
 ;console => notice,warning,error
 ;messages.log => notice,warning,error
 full.log => notice,warning,error,debug,verbose,dtmf,fax
 ```
 
-`extension.conf`
+**`extension.conf`**
 ```
 [from-internal]
 exten = 1000,1,Answer()
@@ -49,7 +49,7 @@ same = n,Playback(hello-world)
 same = n,Hangup()
 ```
 
-`pjsip.conf`
+**`pjsip.conf`**
 ```
 [transport-udp]
 type=transport
@@ -75,12 +75,12 @@ type=aor
 max_contacts=1
 ```
 
-**music on hold**
+### music on hold
 
-ensure audio format:</br>
+**ensure audio format:**</br>
 `ffmpeg -i the_good_the_bad_and_the_ugly.mp3 -ar 8000 -ac 1 -acodec pcm_s16le the_good_the_bad_and_the_ugly.wav`
 
-`musiconhold.conf`
+**`musiconhold.conf`**
 ```
 [got]
 mode=files
@@ -91,7 +91,7 @@ mode=files
 directory=/path/to/tgtbtu
 ```
 
-`extension.conf`
+**`extension.conf`**
 ```
 [from-internal]
 exten = 1000,1,Answer()
